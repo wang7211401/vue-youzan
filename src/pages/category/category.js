@@ -48,5 +48,10 @@ new Vue({
     },
     components:{
         Foot
+    },
+    filters:{
+       number(price){
+           return Number(price).toFixed(2)
+       } 
     }
 })
