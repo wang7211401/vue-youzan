@@ -103,9 +103,10 @@
                           <span class="follows"> / 关注度: {{list.follows}}</span>
                         </div>
                         <ul class="shop-images">
-                          <li>
+                          <li v-for="item in list.images">
                             <a :href="list.clickUrl">
-                              <img :src="list.images[0]"></a>
+                              <img :src="item">
+                            </a>
                           </li>
                         </ul>
                       </li>
