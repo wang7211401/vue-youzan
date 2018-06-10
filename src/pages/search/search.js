@@ -15,6 +15,7 @@ new Vue({
     el:'.container',
     data:{
         searchList:null,
+        keyword,
         show:false
     },
     created(){
