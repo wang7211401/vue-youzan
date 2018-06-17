@@ -23,7 +23,7 @@
   </style>
 </head>
 
-<body class=" body-fixed-bottom" style="">
+<body class=" body-fixed-bottom">
   <div class="container " style="min-height: 581px;" v-cloak>
     <div class="content clearfix js-page-content">
       <div id="cart-container">
@@ -134,22 +134,23 @@
             </div>
           </div>
           <div style="padding:0;" class="js-bottom-opts bottom-fix">
-            <!-- <div class="go-shop-tip js-go-shop-tip c-orange font-size-12">
+            <div class="go-shop-tip js-go-shop-tip c-orange font-size-12">
               你需要分开结算每个店铺的商品哦~
-            </div> -->
+            </div> 
             <div class="bottom-cart clear-fix">
               <div class="select-all" @click="selectAll">
                 <span class="check" v-show="!editingShop" :class="{checked:allSelected}"></span>
                 <span class="check" v-show="editingShop" :class="{checked:allRemoveSelected}"></span>
                 全选
-              </div>
+              </div> -->
               <!-- 显示状态 -->
               <div class="total-price" v-show="!editingShop">
-                合计：¥<span class="js-total-price" style="color: rgb(255, 102, 0);">{{total}}</span>
+                合计：¥<span class="js-total-price" style="color: rgb(255, 102, 0);">{{total | number}}</span>
                 <p class="c-gray-dark">不含运费</p>
               </div>
-              <button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14" :disabled="!selectLists.length" v-show="!editingShop">
-                结算 ({{selectLists.length}})
+              <button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14" :disabled="!selectLists.length" v-show="!editingShop" 
+              v-if="selectLists&&selectLists.length">
+                结算 (3)
               </button>
               <!-- 编辑状态 -->
               <button href="javascript:;" :disabled="!removeLists.length" class="j-delete-goods btn font-size-14 btn-red" 
