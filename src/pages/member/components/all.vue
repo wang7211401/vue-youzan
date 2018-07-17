@@ -1,6 +1,7 @@
 <template>
   <div class="container " style="min-height: 597px;">
-    <div class="block-list address-list section section-first js-no-webview-block" v-for="list in lists" v-if="lists&&lists.length">
+    <div class="block-list address-list section section-first js-no-webview-block" v-for="list in lists" 
+    :key="list.id" v-if="lists&&lists.length">
       <a class="block-item js-address-item address-item" :class="{'address-item-default':list.isDefault}" @click="toEdit(list)">
         <div class="address-title">{{list.name}} {{list.tel}}</div>
         <p>{{list.provinceName}}{{list.cityName}}{{list.districtName}}{{list.address}}</p>
@@ -19,21 +20,15 @@
 import Address from 'js/addressService.js'
 
 export default {
-  data() {
-    return {
-      // lists: JSON.parse(sessionStorage.getItem('adLists')) || null
-      lists: null
+  computed:{
+    lists(){
+      return this.$store.state.lists
     }
   },
   created() {
-    // if(!this.lists)  {
-    //   Address.list().then(res => {
-    //     this.lists = res.data.lists
-    //   })
-    // }
-    Address.list().then(res => {
-      this.lists = res.data.lists
-    })
+    if(!this.lists)  {
+      this.$store.dispatch('getLists')
+    }
   },
   methods: {
     toEdit(list) {

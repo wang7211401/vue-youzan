@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="block section js-save block-control-btn" @click="add">
+        <div class="block section js-save block-control-btn" @click.once="add">
             <div class="block-item c-blue center">保存</div>
         </div>
         <div class="block section js-delete block-control-btn" v-show="type=='edit'" @click="remove">

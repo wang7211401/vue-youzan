@@ -1,4 +1,5 @@
 import Address from 'js/addressService.js'
+import { mapState } from 'vuex';
 
 export default {
   name:'form',
@@ -19,14 +20,21 @@ export default {
       // instance: JSON.parse(sessionStorage.getItem('instance'))
     }
   },
+  computed:{
+    ...mapState({
+      lists:state => state.lists
+    })
+  },
   created() {
     if(this.type === 'edit') {
       let ad = this.instance
       this.provinceValue = parseInt(ad.provinceValue)
+      this.isInitVal = true
       this.name = ad.name
       this.tel = ad.tel
       this.address = ad.address
       this.id = ad.id
+      this.isDefault = ad.isDefault
     }
   },
   methods: {
@@ -36,29 +44,31 @@ export default {
       let data = {name, tel, provinceValue, cityValue, districtValue, address}
       if(this.type === 'edit') {
         data.id = this.id
-        Address.update(data).then(res => {
-          this.$router.go(-1)
-        })
+        data.isDefault = this.isDefault
+        this.$store.dispatch('updateAction',data)
       }else {
-        Address.add(data).then(res => {
-          this.$router.go(-1)
-        })
+        this.$store.dispatch('addAction',data)
       }
     },
     remove() {
-      if (window.confirm("确认删除?")) { 
-        Address.remove(this.id).then(res => {
-          this.$router.go(-1)
-        })
+      if (window.confirm("确认删除?")) {
+        this.$store.dispatch('removeAction',this.id)
       } 
     },
     setDefault() {
-      Address.setDefault(this.id).then(res => {
-        this.$router.go(-1)
-      })
+      this.$store.dispatch('setDefaultAction',this.id)
+      // Address.setDefault(this.id).then(res => {
+      //   this.$router.go(-1)
+      // })
     }
   },
   watch: {
+    lists:{
+      handler(){
+        this.$router.go(-1)
+      },
+      deep:true
+    },
     provinceValue(val) {
       if(val === -1) return
       let index = this.addressData.list.findIndex(item => {
