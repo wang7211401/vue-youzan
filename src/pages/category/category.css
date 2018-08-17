@@ -396,7 +396,7 @@ only screen and (min-device-pixel-ratio:1.5) {
   }
 }
 
-.custom-search form {
+.custom-search .search-input {
   margin: 0;
   position: relative;
   background: #fff;
@@ -404,7 +404,7 @@ only screen and (min-device-pixel-ratio:1.5) {
   box-sizing: border-box
 }
 
-.custom-search form:before {
+.custom-search .search-input:before {
   z-index: 1;
   border-radius: 8px;
   content: "";
@@ -422,11 +422,11 @@ only screen and (min-device-pixel-ratio:1.5) {
   border: 1px solid #e5e5e5
 }
 
-.custom-search form::-webkit-input-placeholder {
+.custom-search .search-input::-webkit-input-placeholder {
   color: #d7d7d7
 }
 
-.custom-search form .custom-search-input {
+.custom-search .search-input .custom-search-input {
   margin: 0;
   padding: 0 10px 0 40px;
   -webkit-appearance: none;
@@ -455,7 +455,7 @@ only screen and (min-device-pixel-ratio:1.5) {
   clear: both
 }
 
-.custom-search.focus form {
+.custom-search.focus .search-input {
   float: left;
   width: 88%;
   margin-right: 8px

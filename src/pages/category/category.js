@@ -6,7 +6,6 @@ import axios from 'axios'
 
 import Foot from 'components/Foot.vue'
 import url from 'js/api.js'
-import Axios from 'axios';
 
 new Vue({
     el:'#app',
@@ -14,7 +13,8 @@ new Vue({
         topLists:null,
         subData:null,
         rankData:null,
-        topIndex:0
+        topIndex:0,
+        keyword:''
     },
     created(){
         this.getTopList()
@@ -46,8 +46,11 @@ new Vue({
         },
         toSearch(list){
             location.href=`search.html?keyword=${list.name}&id=${list.id}`
-        }
-            
+        },
+        search(){
+            if(!this.keyword) return
+            window.location.href=`search.html?keyword=${this.keyword}`
+        }            
     },
     components:{
         Foot

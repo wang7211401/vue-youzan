@@ -60,7 +60,7 @@
                       </div>
                       <div class="name-card clearfix">
                         <a :href="'goods.html?id='+ good.id" class="thumb js-goods-link">
-                          <img class="js-lazy" :src="good.image">
+                          <img class="js-lazy" :src="good.img">
                         </a>
                         <div class="detail">
                           <a :href="'goods.html?id='+ good.id" class="js-goods-link">
@@ -134,9 +134,9 @@
             </div>
           </div>
           <div style="padding:0;" class="js-bottom-opts bottom-fix">
-            <div class="go-shop-tip js-go-shop-tip c-orange font-size-12">
+            <!-- <div class="go-shop-tip js-go-shop-tip c-orange font-size-12">
               你需要分开结算每个店铺的商品哦~
-            </div> 
+            </div>  -->
             <div class="bottom-cart clear-fix">
               <div class="select-all" @click="selectAll">
                 <span class="check" v-show="!editingShop" :class="{checked:allSelected}"></span>

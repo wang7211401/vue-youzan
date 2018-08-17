@@ -54,7 +54,8 @@ const store = new Vuex.Store({
         },
         updateAction({commit},instance){
             Address.update(instance).then(res =>{
-                let data = res.data.data
+                let data = res.data
+                console.log(data)
                 data.id = instance.id
                 data.isDefault = instance.isDefault
                 commit('update',instance)

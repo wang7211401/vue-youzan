@@ -16,8 +16,8 @@ export default {
       addressData: require('@/modules/js/address.json'),
       cityList: null,
       districtList: null,
-      instance: this.$route.query.instance,
-      // instance: JSON.parse(sessionStorage.getItem('instance'))
+      instance: '',
+      
     }
   },
   computed:{
@@ -27,6 +27,7 @@ export default {
   },
   created() {
     if(this.type === 'edit') {
+      this.instance = JSON.parse(this.$route.query.instance)
       let ad = this.instance
       this.provinceValue = parseInt(ad.provinceValue)
       this.isInitVal = true
@@ -34,7 +35,7 @@ export default {
       this.tel = ad.tel
       this.address = ad.address
       this.id = ad.id
-      this.isDefault = ad.isDefault
+      this.isDefault = ad.isDefault 
     }
   },
   methods: {
@@ -47,6 +48,7 @@ export default {
         data.isDefault = this.isDefault
         this.$store.dispatch('updateAction',data)
       }else {
+        data.id = parseInt(Math.random()*100000 + 10000)
         this.$store.dispatch('addAction',data)
       }
     },
@@ -57,9 +59,6 @@ export default {
     },
     setDefault() {
       this.$store.dispatch('setDefaultAction',this.id)
-      // Address.setDefault(this.id).then(res => {
-      //   this.$router.go(-1)
-      // })
     }
   },
   watch: {
@@ -71,13 +70,14 @@ export default {
     },
     provinceValue(val) {
       if(val === -1) return
+      
       let index = this.addressData.list.findIndex(item => {
         return item.value === val
       })
       this.cityList = this.addressData.list[index].children
       this.cityValue = -1
       this.districtValue = -1
-      if(this.type === 'edit') {
+      if(this.type === 'edit' && this.isInitVal) {
         this.cityValue = parseInt(this.instance.cityValue)
       }
     },
@@ -88,8 +88,9 @@ export default {
       })
       this.districtList = this.cityList[index].children
       this.districtValue = -1
-      if(this.type === 'edit') {
+      if(this.type === 'edit' && this.isInitVal) {
         this.districtValue = parseInt(this.instance.districtValue)
+        this.isInitVal = false
       }
     }
   }

@@ -34,7 +34,7 @@ export default {
     toEdit(list) {
       // 如果想在接收数据的页面刷新时依然可以获取传递的object类型数据
       sessionStorage.setItem('adLists', JSON.stringify(this.lists))
-      this.$router.push({ path: '/address/form', query: { type: 'edit', instance: list } })
+      this.$router.push({ path: '/address/form', query: { type: 'edit', instance: JSON.stringify(list) } })
       // sessionStorage.setItem('instance',JSON.stringify(list))
       // this.$router.push({path:'/address/form',query:{type:'edit'}})
     },

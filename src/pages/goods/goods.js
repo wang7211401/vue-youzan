@@ -53,7 +53,7 @@ new Vue({
                 data.imgs.forEach(item=>{
                     this.SwipeLists.push({
                         clickUrl:'',
-                        image:item
+                        img:item
                     })
                 })
             })
